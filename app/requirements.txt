@@ -1,0 +1,7 @@
+flask===2.1.2
+flask-cors
+psycopg2
+Flask-SQLAlchemy
+Flask-Migrate
+Flask-Marshmallow
+marshmallow-sqlalchemy

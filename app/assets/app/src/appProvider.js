@@ -1,13 +1,12 @@
 import ReactDOM from 'react-dom/client';
 import React from 'react';
+import App from 'src/App';
 
-const m = document.createElement('div');
-document.body.appendChild(m);
-const root = ReactDOM.createRoot(
-    m
-);
+const rootElement = document.createElement('div');
+document.body.appendChild(rootElement);
+const root = ReactDOM.createRoot(rootElement);
 
-root.render(<h1>
-    Hello World
-</h1>)
+root.render(<div>
+    <App />
+</div>)
 

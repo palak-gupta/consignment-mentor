@@ -13,7 +13,11 @@ module.exports = {
     devServer: {
         static: './dist',
         port: '4000',
-        host: 'localhost'
+        host: 'localhost',
+        client: {
+            logging: 'log',
+            progress: true,
+        }
     },
     plugins: [
         new htmlWebpackPlugin({
@@ -28,5 +32,11 @@ module.exports = {
                 loader: 'babel-loader',
             }
         ]
+    },
+    resolve: {
+        extensions: ['', '.js', '.jsx'],
+        alias: {
+            src: path.resolve(__dirname, 'src/')
+        }
     }
 }

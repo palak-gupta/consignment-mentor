@@ -1,0 +1,23 @@
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    src: url('app/fonts/Inter-Regular.woff'),url('app/fonts/Inter-Regular.woff2');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    src: url('app/fonts/Inter-Medium.woff'),url('app/fonts/Inter-Medium.woff2');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    src: url('app/fonts/Inter-SemiBold.woff'),url('app/fonts/Inter-SemiBold.woff2');
+}
+html {
+    font-family: 'Inter';
+}

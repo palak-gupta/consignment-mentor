@@ -3,7 +3,7 @@ const htmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     mode: 'development',
-    entry: './src/appProvider.js',
+    entry: 'app/AppProvider',
     output: {
         path: path.join(__dirname, 'dist'),
         filename: '[name].[hash].js',
@@ -49,7 +49,7 @@ module.exports = {
     resolve: {
         extensions: ['', '.js', '.jsx', '.scss'],
         alias: {
-            src: path.resolve(__dirname, 'src/')
+            app: path.resolve(__dirname, '')
         }
     }
 }

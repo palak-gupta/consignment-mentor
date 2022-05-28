@@ -4,7 +4,6 @@
   "author": "1997.palak017@gmail.com",
   "license": "MIT",
   "private": true,
-  "main": "src/appProvider.js",
   "scripts": {
     "start": "webpack serve --open"
   },

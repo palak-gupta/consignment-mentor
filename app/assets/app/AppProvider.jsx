@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom/client';
 import React from 'react';
-import App from 'src/App';
+import App from 'app/App';
 
 const rootElement = document.createElement('div');
 document.body.appendChild(rootElement);

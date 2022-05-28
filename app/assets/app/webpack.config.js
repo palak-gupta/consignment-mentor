@@ -30,11 +30,24 @@ module.exports = {
                 test: /\.(js|jsx)$/,
                 exclude: /(node_modules|browser_components)/,
                 loader: 'babel-loader',
+            },
+            {
+                test: /\.s(a|c)ss$/,
+                use: [
+                    {loader: 'style-loader'},
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: true
+                        }
+                    },
+                    {loader: 'sass-loader'}
+                ]
             }
         ]
     },
     resolve: {
-        extensions: ['', '.js', '.jsx'],
+        extensions: ['', '.js', '.jsx', '.scss'],
         alias: {
             src: path.resolve(__dirname, 'src/')
         }

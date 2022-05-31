@@ -1,0 +1,23 @@
+@mixin heading-1 {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 20px;
+}
+
+@mixin medium-1 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 16px;
+}
+
+@mixin regular-2 {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 18px;
+}
+
+@mixin icon-1 {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 18px;
+}

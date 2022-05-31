@@ -1,6 +1,27 @@
-.helloContainer {
+@import 'app/styles/variables';
+
+.dashboardContainer {
     display: flex;
-    flex-direction: column;
+    background-color: $color-gray-10;
+    justify-content: space-between;
     align-items: center;
-    justify-content: space-around;
+    padding: 0 20px;
+    border-bottom: 1px solid $color-gray-1;
+
+    .heading {
+        @include heading-1;
+        padding: 24px 0;
+        color: $color-blue-regular;
+    }
+
+    .headingContext {
+        display: flex;
+        align-items: center;
+        column-gap: 10px;
+
+        .headingContextGreetings {
+            @include regular-2;
+            color: $color-blue-light;
+        }
+    }
 }

@@ -4,9 +4,8 @@ import App from 'app/App';
 import './global.scss';
 const rootElement = document.createElement('div');
 document.body.appendChild(rootElement);
+rootElement.className="root"
 const root = ReactDOM.createRoot(rootElement);
 
-root.render(<div>
-    <App />
-</div>)
+root.render(<App />)
 

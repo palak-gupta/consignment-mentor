@@ -1,0 +1,15 @@
+@import 'app/styles/variables';
+
+.iconContainer {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: $color-gray-8;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include icon-1;
+    color: $color-gray-1;
+}

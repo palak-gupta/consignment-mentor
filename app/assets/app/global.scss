@@ -1,3 +1,4 @@
+@import 'app/styles/variables';
 @font-face {
     font-family: 'Inter';
     font-style: normal;
@@ -18,6 +19,13 @@
     font-weight: 600;
     src: url('app/fonts/Inter-SemiBold.woff'),url('app/fonts/Inter-SemiBold.woff2');
 }
-html {
+html, body {
     font-family: 'Inter';
+    height: 100%;
+    background-color: $color-gray-10;
+}
+
+* {
+    padding: 0;
+    margin: 0;
 }

@@ -16,6 +16,18 @@
     line-height: 18px;
 }
 
+@mixin medium-2 {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 18px;
+}
+
+@mixin regular-3 {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+}
+
 @mixin icon-1 {
     font-weight: 500;
     font-size: 18px;

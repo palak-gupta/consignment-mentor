@@ -1,0 +1,99 @@
+@import 'app/styles/variables';
+$marginHorizontal: 15px;
+.consignmentsContainer {
+  box-sizing: border-box;
+  width: calc(100% - 2 * $marginHorizontal);
+  background-color: $color-white;
+  margin: 25px $marginHorizontal 0;
+  padding: 30px 35px 25px 16px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+}
+
+.consignmentsTable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 25px 15px;
+
+  th {
+    text-align: start;
+    @include medium-2;
+    color: $color-gray-11;
+    border-radius: 15px;
+    background-color: $color-gray-9;
+
+
+    .rateHeader {
+      @include regular-3;
+      color: $color-blue-light;
+    }
+  }
+
+  .purchaseHeader {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .consignmentContainer {
+    border: 1px solid $color-gray-10;
+    box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.25);
+    margin-bottom: 20px;
+  }
+  
+  .retailerCell, .dateCell, .brandCell {
+    width: 22%;
+  }
+  .purchaseCell, .statusCell {
+    width: 16%;
+  }
+
+  .retailerCell, .dateCell, .brandCell, .purchaseCell, .statusCell {
+    padding: 10px 10px 10px 20px;
+  }
+
+  .retailer {
+    display: flex;
+    flex-direction: column;
+
+    .retailerName {
+      @include regular-2;
+    }
+
+    .retailerNumber {
+      @include regular-3;
+      color: $color-blue-light;
+    }
+  }
+
+  .purchase {
+    display: flex;
+    flex-direction: column;
+
+    .purchaseQuantity {
+      @include regular-2;
+      color: $color-gray-1;
+    }
+
+    .purchaseRate {
+      @include regular-3;
+      color: $color-blue-light;
+    }
+  }
+
+  .status {
+    color: $color-white;
+    @include medium-2;
+    border-radius: 7px;
+    border: 1px solid $color-gray-3;
+    text-align: center;
+    padding: 10px 0;
+    min-width: 100px;
+    max-width: 150px;
+  }
+  .statusConfirmed {
+    background-color: $color-green;
+  }
+  .statusOnHold {
+    background-color: $color-yellow;
+  }
+}

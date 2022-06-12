@@ -15,29 +15,29 @@ $marginHorizontal: 15px;
   border-collapse: separate;
   border-spacing: 25px 15px;
 
-  th {
-    text-align: start;
-    @include medium-2;
-    color: $color-gray-11;
-    border-radius: 15px;
-    background-color: $color-gray-9;
-
-
-    .rateHeader {
-      @include regular-3;
-      color: $color-blue-light;
-    }
+  .rateHeader {
+    @include regular-3;
+    color: $color-blue-light;
   }
 
   .purchaseHeader {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
   }
 
   .consignmentContainer {
     border: 1px solid $color-gray-10;
     box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.25);
     margin-bottom: 20px;
+    border-radius: 4px;
+
+    &:hover {
+      .editActionCell {
+        visibility: visible;
+        cursor: pointer;
+      }
+    }
   }
   
   .retailerCell, .dateCell, .brandCell {
@@ -49,6 +49,10 @@ $marginHorizontal: 15px;
 
   .retailerCell, .dateCell, .brandCell, .purchaseCell, .statusCell {
     padding: 10px 10px 10px 20px;
+  }
+
+  .editActionCell {
+    visibility: hidden;
   }
 
   .retailer {
@@ -96,4 +100,29 @@ $marginHorizontal: 15px;
   .statusOnHold {
     background-color: $color-yellow;
   }
+
+  .dateContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.pageHandleContainer {
+  display: flex;
+  flex: 3;
+}
+
+.dashboardFooter {
+  margin-top: 100px;
+  display: flex;
+  align-items: center;
+  // column-gap: 100px;
+}
+
+.actionsContainer {
+  display: flex;
+  column-gap: 25px;
+  flex: 2;
+  justify-content: flex-end;
 }

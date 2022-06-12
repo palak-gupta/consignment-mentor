@@ -1,0 +1,19 @@
+@import 'app/styles/variables';
+
+.paginatorContainer {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pagesContainer {
+  display: inline-flex;
+  column-gap: 5px;
+
+}
+
+.countDetailContainer {
+  padding: 10px 50px;
+  box-shadow: $shadow-2;
+  border: 1px solid $color-gray-9;
+}

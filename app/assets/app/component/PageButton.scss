@@ -1,0 +1,28 @@
+@import 'app/styles/variables';
+
+.page {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  border: 1px solid $color-gray-8;
+  box-shadow: $shadow-y-1;
+  padding: 2px;
+  background-color: $color-gray-9;
+  color: $color-gray-11;
+  @include regular-3;
+}
+
+.unselectedPage:hover {
+  cursor: pointer;
+  background-color: darken($color: $color-gray-9, $amount: 5);
+  color: lighten($color: $color-gray-11, $amount: 5);
+}
+
+.currentPage {
+  background-color: $color-gray-11;
+  border: none;
+  color: $color-gray-9;
+}

@@ -1,0 +1,15 @@
+@import 'app/styles/variables';
+
+.tableHeaderCell {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tableHeader {
+  text-align: start;
+  @include medium-2;
+  color: $color-gray-12;
+  border-radius: 15px;
+  background-color: $color-gray-9;
+}

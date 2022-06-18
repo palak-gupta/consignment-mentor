@@ -17,6 +17,12 @@ module.exports = {
         client: {
             logging: 'log',
             progress: true,
+        },
+        proxy: {
+            "/api": {
+                target: "http://localhost:5001",
+                pathRewrite: { '^/api': '' },
+            }
         }
     },
     plugins: [

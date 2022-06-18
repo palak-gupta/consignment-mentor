@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import classnames from 'classnames';
 
 import { format } from 'date-fns';
@@ -10,78 +10,30 @@ import DownloadArrow from 'app/images/download-arrow.svg';
 import PlusSign from 'app/images/plus-sign.svg';
 import EditAction from 'app/images/edit-action.svg';
 
+import { camelizeKeys, setEntityAttributes } from 'app/utils/common_utils';
+
 import styles from 'app/container/ConsignmentDashboard.scss';
 
 
 
 const ConsignmentDashboard = () => {
-    const consignmentsData = {
-        '1': {
-            'id': '1',
-            'retailer': {
-                'id': 1,
-                'name': 'Ambe Materials',
-                'phoneNumber': '9566191975'
-            },
-            quantity: 5000,
-            rate: 2.5,
-            brand: 'Ultra Tech',
-            status: 1,
-            dateOfPlacement: '01/06/2022'
-        },
-        '2': {
-            'id': '2',
-            'retailer': {
-                'id': 1,
-                'name': 'Ambe Materials',
-                'phoneNumber': '9566191975'
-            },
-            quantity: 5000,
-            rate: 2.5,
-            brand: 'Ultra Tech',
-            status: 0,
-            dateOfPlacement: '01/06/2022'
-        },
-        '3': {
-            'id': '3',
-            'retailer': {
-                'id': 1,
-                'name': 'Ambe Materials',
-                'phoneNumber': '9566191975'
-            },
-            quantity: 5000,
-            rate: 2.5,
-            brand: 'Ultra Tech',
-            status: 0,
-            dateOfPlacement: '01/06/2022'
-        },
-        '4': {
-            'id': '4',
-            'retailer': {
-                'id': 1,
-                'name': 'Ambe Materials',
-                'phoneNumber': '9566191975'
-            },
-            quantity: 5000,
-            rate: 2.5,
-            brand: 'Ultra Tech',
-            status: 1,
-            dateOfPlacement: '01/06/2022'
-        },
-        '5': {
-            'id': '5',
-            'retailer': {
-                'id': 1,
-                'name': 'Ambe Materials',
-                'phoneNumber': '9566191975'
-            },
-            quantity: 5000,
-            rate: 2.5,
-            brand: 'Ultra Tech',
-            status: 1,
-            dateOfPlacement: '01/06/2022'
+
+    const [consignmentsData, setConsignmentsData] = useState([]);
+    async function getOrders() {
+        try {
+            const response = await fetch('/api/orders/');
+            const r = await response.json();
+            setConsignmentsData(setEntityAttributes(camelizeKeys(r), 'orders'));
+            // console.log(r, 'gjgjgk');
+        } catch(error) {
+            console.error(error)
+            return []
         }
     }
+    // console.log(data);
+    useEffect(() => {
+        getOrders();
+    }, [])
     const [meta, setMeta] = useState({
         perPage: 5,
         totalCount: 100,
@@ -127,7 +79,7 @@ const ConsignmentDashboard = () => {
                                 <td className={styles.retailerCell}>
                                     <div className={styles.retailer}>
                                         <span className={styles.retailerName}>{data.retailer.name}</span>
-                                        <span className={styles.retailerNumber}>{data.retailer.phoneNumber}</span>
+                                        <span className={styles.retailerNumber}>{data.retailer.mobileNumber}</span>
                                     </div>
                                 </td>
                                 <td className={styles.purchaseCell}>
@@ -136,7 +88,7 @@ const ConsignmentDashboard = () => {
                                         <span className={styles.purchaseRate}>{`@ ${data.rate}%`}</span>
                                     </div>
                                 </td>
-                                <td className={styles.brandCell}>{data.brand}</td>
+                                <td className={styles.brandCell}>{data.product}</td>
                                 <td className={styles.statusCell}>
                                     <div className={classnames(styles.status, data.status? styles.statusConfirmed: styles.statusOnHold)}>{data.status? 'Confirmed': 'On Hold'}</div>
                                 </td>

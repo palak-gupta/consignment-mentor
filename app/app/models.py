@@ -1,4 +1,5 @@
 from app import db
+from datetime import datetime
 
 class Product(db.Model):
     __tablename__ = 'products'
@@ -6,6 +7,7 @@ class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     orders = db.relationship('Order', backref='product', lazy=True)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow())
     
     def __init__(self, name):
         self.name = name
@@ -26,6 +28,7 @@ class Retailer(db.Model):
     name = db.Column(db.String)
     mobile_number = db.Column(db.String(10))
     orders = db.relationship('Order', backref='retailer', lazy=True)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow())
     
     def __init__(self, name, mobile_number):
         self.name = name
@@ -40,15 +43,19 @@ class Retailer(db.Model):
             'name': self.name,
             'mobile_number': self.mobile_number
         }
-terms_of_service = db.Table('terms', 
-                            db.Column('terms_of_service_id', db.Integer, db.ForeignKey('terms_of_services.id'), primary_key=True),
-                            db.Column('order_id', db.Integer, db.ForeignKey('orders.id'), primary_key=True)
-                            )
+class OrdersTermsOfService(db.Model):
+    __tablename__ = 'orders_terms_of_services'
+    
+    term_of_service_id = db.Column(db.Integer, db.ForeignKey('terms_of_services.id'), primary_key=True)
+    order_id = db.Column(db.Integer, db.ForeignKey('orders.id'), primary_key=True)
+
 class TermsOfService(db.Model):
     __tablename__ = 'terms_of_services'
     
     id = db.Column(db.Integer, primary_key=True)
     description = db.Column(db.String)
+    orders = db.relationship('Order', secondary='orders_terms_of_services')
+    created_at = db.Column(db.DateTime, default=datetime.utcnow())
     
     def __init__(self, description):
         self.description = description
@@ -68,11 +75,12 @@ class Order(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     retailer_id = db.Column(db.Integer, db.ForeignKey('retailers.id'), nullable=False)
     product_id = db.Column(db.Integer, db.ForeignKey('products.id'), nullable=False)
-    terms_of_service_ids = db.relationship('TermsOfService', secondary=terms_of_service, lazy='subquery',
-                                          backref=db.backref('orders', lazy=True))
+    terms_of_services = db.relationship('TermsOfService', overlaps="orders", secondary='orders_terms_of_services')
     rate = db.Column(db.Float)
     quantity = db.Column(db.Integer)
     status = db.Column(db.Boolean)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow())
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow(), onupdate=datetime.utcnow())
     
     def __init__(self, retailer_id, product_id, rate, quantity):
         self.retailer_id = retailer_id

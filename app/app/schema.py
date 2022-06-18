@@ -1,6 +1,6 @@
 from marshmallow import fields, validate, pre_load, post_load, post_dump, EXCLUDE, ValidationError
 from app import mp
-from app.models import (Product, Retailer, Order)
+from app.models import (Product, Retailer, Order, TermsOfService)
 
 class ProductSchema(mp.SQLAlchemyAutoSchema):
     class Meta:
@@ -23,17 +23,28 @@ class RetailerSchema(mp.SQLAlchemyAutoSchema):
 retailer_schema = RetailerSchema()
 retailers_schema = RetailerSchema(many=True)
 
+class TermOfServiceSchema(mp.SQLAlchemyAutoSchema):
+    class Meta:
+        model = TermsOfService
+    id = fields.Int()
+    description = fields.Str()
+    orders = fields.Nested("OrderSchema", only=("id",), many=True)
+
 class OrderSchema(mp.SQLAlchemyAutoSchema):
     class Meta:
+        strict = True
         model = Order
         unknown = EXCLUDE
     id = fields.Int(dump_only=True)
     product_id = fields.Int(load_only=True)
     retailer_id = fields.Int(load_only=True)
-    product = fields.Nested(ProductSchema, dump_only=True)
-    retailer = fields.Nested(RetailerSchema, dump_only=True)
+    created_at = fields.DateTime(data_key="date_of_placement")
+    updated_at = fields.DateTime(load_only=True)
+    product = fields.Pluck(ProductSchema, "name", dump_only=True)
+    retailer = fields.Nested(RetailerSchema, only=("name", "mobile_number"), dump_only=True)
     rate = fields.Float(required=True, validate=validate.Range(min=0))
     quantity = fields.Int(required=True, validate=validate.Range(min=0))
+    terms_of_services = fields.Pluck(TermOfServiceSchema, "description", many=True) #TODO Understand Why warning is arrising
     
     @pre_load
     def process_input(self, data, **kwargs):
